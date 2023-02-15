@@ -42,8 +42,8 @@ pipeline {
 //           }
           env.APP_NAME = "app.vietnix.vn"
           env.APP_ENV = "prod"
-          env.DEPLOYMENT_NAME = "vnx-app-prod"
-          env.IMAGE_NAME = "vietnix/app"
+          env.DEPLOYMENT_NAME = "vnx-test"
+          env.IMAGE_NAME = "dev/test"
 
 //           env.AUTHOR = AUTHOR
 //           env.COMMIT_MSG = COMMIT_MSG
