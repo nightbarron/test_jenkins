@@ -72,7 +72,8 @@ pipeline {
     stage ('Deploy') {
      steps {
         script {
-          withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://kubernetes.default.svc.cluster.local' ]) {
+          // withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://kubernetes.default.svc.cluster.local' ]) {
+          withKubeConfig([serverUrl: 'https://14.225.212.131:6443' ]) {
             sh """kubectl apply -f deployment.${env.APP_ENV}.yaml"""
             sh """kubectl patch deployment ${env.DEPLOYMENT_NAME} -p '{ \"spec\":{\"template\":{\"metadata\":{\"labels\":{\"buildNumber\":\"$BUILD_NUMBER\"}}}}}' """
           }
