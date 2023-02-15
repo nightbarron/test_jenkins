@@ -41,7 +41,7 @@ pipeline {
 //             error "Branch is invalid!"
 //           }
           env.APP_NAME = "app.vietnix.vn"
-          env.APP_ENV = "prod"
+          env.APP_ENV = ""
           env.DEPLOYMENT_NAME = "vnx-test"
           env.IMAGE_NAME = "dev/test"
 
@@ -54,7 +54,7 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          image = docker.build("${env.IMAGE_NAME}", "-f Dockerfile.${env.APP_ENV} .")
+          image = docker.build("${env.IMAGE_NAME}", "-f Dockerfile .")
         }
       }
     }
