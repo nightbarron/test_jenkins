@@ -10,36 +10,40 @@ pipeline {
           SSH_HOST = "127.0.0.1"
           SSH_USERNAME = "root"
 
-          def AUTHOR = ""
-          def COMMIT_MSG = ""
+//           def AUTHOR = ""
+//           def COMMIT_MSG = ""
 
-          def changeFolders = []
+//           def changeFolders = []
 
-          def changeLogSets = currentBuild.changeSets
-          for (int i = 0; i < changeLogSets.size(); i++) {
-            def entries = changeLogSets[i].items
-            for (int j = 0; j < entries.length; j++) {
-              def entry = entries[j]
-              echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
+//           def changeLogSets = currentBuild.changeSets
+//           for (int i = 0; i < changeLogSets.size(); i++) {
+//             def entries = changeLogSets[i].items
+//             for (int j = 0; j < entries.length; j++) {
+//               def entry = entries[j]
+//               echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
               
-              AUTHOR = entry.author
-              COMMIT_MSG += " %0A - ${entry.msg} "
-            }
-          }
+//               AUTHOR = entry.author
+//               COMMIT_MSG += " %0A - ${entry.msg} "
+//             }
+//           }
 
-          if ("${env.BRANCH_NAME}" == "master") {
-            env.APP_NAME = "app.vietnix.vn"
-            env.APP_ENV = "prod"
-            env.DEPLOYMENT_NAME = "vnx-app-prod"
-            env.IMAGE_NAME = "vietnix/app"
-          } else if ("${env.BRANCH_NAME}" == "dev") {
-            env.APP_NAME = "appdev.vietnix.vn"
-            env.APP_ENV = "dev"
-            env.DEPLOYMENT_NAME = "vnx-app-dev"
-            env.IMAGE_NAME = "vietnix/appdev"
-          } else {
-            error "Branch is invalid!"
-          }
+//           if ("${env.BRANCH_NAME}" == "master") {
+//             env.APP_NAME = "app.vietnix.vn"
+//             env.APP_ENV = "prod"
+//             env.DEPLOYMENT_NAME = "vnx-app-prod"
+//             env.IMAGE_NAME = "vietnix/app"
+//           } else if ("${env.BRANCH_NAME}" == "dev") {
+//             env.APP_NAME = "appdev.vietnix.vn"
+//             env.APP_ENV = "dev"
+//             env.DEPLOYMENT_NAME = "vnx-app-dev"
+//             env.IMAGE_NAME = "vietnix/appdev"
+//           } else {
+//             error "Branch is invalid!"
+//           }
+          env.APP_NAME = "app.vietnix.vn"
+          env.APP_ENV = "prod"
+          env.DEPLOYMENT_NAME = "vnx-app-prod"
+          env.IMAGE_NAME = "vietnix/app"
 
           env.AUTHOR = AUTHOR
           env.COMMIT_MSG = COMMIT_MSG
